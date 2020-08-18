@@ -18,9 +18,6 @@
  *	You should have received a copy of the GNU General Public License					  *
  *	along with The Chili DirectX Framework.  If not, see <http://www.gnu.org/licenses/>.  *
  ******************************************************************************************/
-
-// testing purposes
-
 #include "MainWindow.h"
 #include "Game.h"
 #include "SpriteCodex.h"
