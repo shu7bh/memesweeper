@@ -1,5 +1,8 @@
 #pragma once
 #include "Vec2.h"
+#include "Graphics.h"
+#include "SpriteCodex.h"
+
 class Cell
 {
 private:
@@ -9,5 +12,5 @@ private:
 	Vec2 pos; // top left
 public:
 	Cell(const Vec2& pos);
+	void draw(Graphics& gfx) const;
 };
-

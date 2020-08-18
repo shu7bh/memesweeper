@@ -25,6 +25,7 @@
 #include "Graphics.h"
 #include "Vec2.h"
 #include "Board.h"
+#include "SpriteCodex.h"
 
 class Game
 {

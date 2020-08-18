@@ -3,6 +3,7 @@
 #include "Cell.h"
 #include "Colors.h"
 #include "Graphics.h"
+#include "SpriteCodex.h"
 #include <vector>
 #include <memory>
 

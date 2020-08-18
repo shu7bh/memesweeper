@@ -42,25 +42,7 @@ void Game::UpdateModel()
 
 }
 
-#include "SpriteCodex.h"
 void Game::ComposeFrame()
 {	
 	board.draw(gfx);
-	for(int i  = 0;i<5;++i )
-		for(int j  = 0 ; j< 5; ++j)
-			SpriteCodex::DrawTile0(Vec2(200 + i*20, 250 + j*20), gfx);
-	SpriteCodex::DrawTile0(Vec2(150, 250), gfx);
-	SpriteCodex::DrawTile1(Vec2(200, 250), gfx);
-	SpriteCodex::DrawTile2(Vec2(250, 250), gfx);
-	SpriteCodex::DrawTile3(Vec2(300, 250), gfx);
-	SpriteCodex::DrawTile4(Vec2(350, 250), gfx);
-	SpriteCodex::DrawTile5(Vec2(400, 250), gfx);
-	SpriteCodex::DrawTile6(Vec2(450, 250), gfx);
-	SpriteCodex::DrawTile7(Vec2(500, 250), gfx);
-	SpriteCodex::DrawTile8(Vec2(550, 250), gfx);
-	SpriteCodex::DrawTileButton(Vec2(600, 250), gfx);
-	SpriteCodex::DrawTileCross(Vec2(650, 250), gfx);
-	SpriteCodex::DrawTileFlag(Vec2(750, 250), gfx);
-	SpriteCodex::DrawTileBomb(Vec2(700, 150), gfx);
-	SpriteCodex::DrawTileBombRed(Vec2(650, 150), gfx);
 }
