@@ -30,6 +30,14 @@
 class Game
 {
 public:
+	enum class State
+	{
+		Opened,
+		Menu,
+		Running,
+		End,
+	};
+public:
 	Game( class MainWindow& wnd );
 	Game( const Game& ) = delete;
 	Game& operator=( const Game& ) = delete;
@@ -47,4 +55,5 @@ private:
 	/*  User Variables              */
 	/********************************/
 	Board board;
+	State state;
 };
