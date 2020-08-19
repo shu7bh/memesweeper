@@ -28,9 +28,7 @@ enum class TileState : char
 class Cell
 {
 private:
-	Vec2 pos; // top left
 	bool isEmpty = true;
-	bool isClicked = false;
 public:
 	// Constructor
 	Cell() : pos(Vec2()), tile(Tile::Tile0) {}
@@ -44,6 +42,7 @@ public:
 	const Vec2 Pos() const { return pos; }
 	const Tile getTile() const { return tile; }
 public:
+	Vec2 pos; // top left
 	static constexpr short unsigned int height = 16;
 	static constexpr short unsigned int width = 16;
 

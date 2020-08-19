@@ -70,5 +70,13 @@ const int Board::bombInVicinityCounter(const Vec2& pos) const
 
 const Vec2 Board::calCellPos(const Vec2& cellPos) const
 {
-	return Vec2(pos + Vec2(padding, padding) * (cellPos + 1) + cellPos * Vec2(Cell::width, Cell::height));
+	return pos + Vec2(padding, padding) * (cellPos + 1) + cellPos * Vec2(Cell::width, Cell::height);
+}
+
+void Board::isClicked (MainWindow& wnd)
+{
+	const Vec2 mousePos = (Vec2(wnd.mouse.GetPosX(), wnd.mouse.GetPosY()) - pos - Vec2(padding, padding)) / (Vec2(padding, padding) + Vec2(Cell::width, Cell::height));
+
+	if ((int(mousePos.x) + Cell::width >= mousePos.x) && (int(mousePos.y) + Cell::height >= mousePos.y))
+		cells[int(mousePos.x) * size_t(numCellsWidth) + int(mousePos.y)]->ts = TileState::Clicked;
 }

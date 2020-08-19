@@ -4,6 +4,7 @@
 #include "Colors.h"
 #include "Graphics.h"
 #include "SpriteCodex.h"
+#include "MainWindow.h"
 #include <vector>
 #include <memory>
 #include <random>
@@ -20,6 +21,7 @@ public:
 	std::vector<std::unique_ptr<Cell>> cells;
 	const Color color = Colors::LightGray;
 	void draw(Graphics& gfx) const;
+	void isClicked(MainWindow& wnd);
 private:
 	const bool cellPosIsValid(const Vec2& pos) const;
 	const bool cellIsBomb(const Vec2& pos) const;
