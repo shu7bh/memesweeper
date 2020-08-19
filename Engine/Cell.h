@@ -23,6 +23,7 @@ class Cell
 private:
 	Vec2 pos; // top left
 	bool isEmpty = true;
+	bool isClicked = false;
 public:
 	Cell() : tile(Tile::Tile0) {}
 	Cell(const Vec2& pos, const int tile);
