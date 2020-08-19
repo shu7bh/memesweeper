@@ -1,7 +1,10 @@
 #include "Cell.h"
 
 Cell::Cell(const Vec2& pos, const int tile)
-	: pos(pos), tile(static_cast<Tile>(tile)) {}
+	: pos(pos), tile(static_cast<Tile>(tile)), isEmpty(false) {}
+
+Cell::Cell(const Vec2& pos, const Tile tile)
+	: pos(pos), tile(tile), isEmpty(false) {}
 
 void Cell::draw(Graphics& gfx) const
 {

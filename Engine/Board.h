@@ -20,4 +20,8 @@ public:
 	std::vector<std::unique_ptr<Cell>> cells;
 	const Color color = Colors::LightGray;
 	void draw(Graphics& gfx) const;
+private:
+	const bool cellPosIsValid(const Vec2& pos) const;
+	const bool cellIsBomb(const Vec2& pos) const;
+	const int bombInVicinityCounter(const Vec2& pos) const;
 };
