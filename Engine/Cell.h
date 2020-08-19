@@ -33,7 +33,7 @@ private:
 	bool isClicked = false;
 public:
 	// Constructor
-	Cell() : tile(Tile::Tile0) {}
+	Cell() : pos(Vec2()), tile(Tile::Tile0) {}
 	Cell(const Vec2& pos, const int tile);
 	Cell(const Vec2& pos, const Tile tile);
 

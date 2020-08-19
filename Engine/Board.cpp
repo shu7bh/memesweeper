@@ -22,8 +22,9 @@ Board::Board(const Vec2 pos, const int nCW, const int nCH, const int numBombs)
 		do
 			cellPos = Vec2(valx(generator), valy(generator));
 		while (!cells[cellPos.x * size_t(numCellsWidth) + cellPos.y]->IsEmpty());
-		Vec2 actualPos = pos + Vec2(padding, padding) + cellPos * Vec2(Cell::width + padding, Cell::height + padding);
-		cells[cellPos.x * size_t(numCellsWidth) + cellPos.y] = std::make_unique<Cell>(actualPos, Tile::TileBomb);
+
+		cells[cellPos.x * size_t(numCellsWidth) + cellPos.y] = 
+			std::make_unique<Cell>(calCellPos(cellPos), Tile::TileBomb);
 	}
 
 	for (auto i = 0; i < numCellsWidth; ++i)
@@ -31,8 +32,8 @@ Board::Board(const Vec2 pos, const int nCW, const int nCH, const int numBombs)
 			if (cells[i * size_t(numCellsWidth) + j]->IsEmpty())
 			{
 				Vec2 cellPos(i, j);
-				Vec2 actualPos = pos + Vec2(padding, padding) + cellPos * Vec2(Cell::width + padding, Cell::height + padding);
-				cells[i * size_t(numCellsWidth) + j] = std::make_unique<Cell>(actualPos, bombInVicinityCounter(cellPos));
+				cells[i * size_t(numCellsWidth) + j] = 
+					std::make_unique<Cell>(calCellPos(cellPos), bombInVicinityCounter(cellPos));
 			}
 }
 
@@ -63,4 +64,9 @@ const int Board::bombInVicinityCounter(const Vec2& pos) const
 			if (cellPosIsValid(pos + Vec2(i, j)) && cellIsBomb(pos + Vec2(i, j)))
 				++ct;
 	return ct;
+}
+
+const Vec2 Board::calCellPos(const Vec2& cellPos) const
+{
+	return Vec2(pos + Vec2(padding, padding) * (cellPos + 1) + cellPos * Vec2(Cell::width, Cell::height));
 }

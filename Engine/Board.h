@@ -24,4 +24,5 @@ private:
 	const bool cellPosIsValid(const Vec2& pos) const;
 	const bool cellIsBomb(const Vec2& pos) const;
 	const int bombInVicinityCounter(const Vec2& pos) const;
+	const Vec2 calCellPos(const Vec2& cellPos) const;
 };
