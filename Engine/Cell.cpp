@@ -8,7 +8,12 @@ Cell::Cell(const Vec2& pos, const Tile tile)
 
 void Cell::draw(Graphics& gfx) const
 {
-	if (isClicked)
+	switch (ts)
+	{
+	case TileState::NotClicked:
+		SpriteCodex::DrawTile0(pos, gfx);
+		break;
+	case TileState::Clicked:
 		switch (tile)
 		{
 		case Tile::Tile0:
@@ -38,15 +43,14 @@ void Cell::draw(Graphics& gfx) const
 		case Tile::Tile8:
 			SpriteCodex::DrawTile8(pos, gfx);
 			break;
-		case Tile::TileFlag:
-			SpriteCodex::DrawTileFlag(pos, gfx);
-			break;
 		case Tile::TileBomb:
 			SpriteCodex::DrawTileBomb(pos, gfx);
 			break;
 		default:
 			break;
 		}
-	else
-		SpriteCodex::DrawTile0(pos, gfx);
+	case TileState::Flagged:
+		SpriteCodex::DrawTileFlag(pos, gfx);
+		break;
+	}
 }
