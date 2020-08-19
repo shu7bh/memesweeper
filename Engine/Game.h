@@ -30,7 +30,7 @@
 class Game
 {
 public:
-	enum class State
+	enum class State : char
 	{
 		Opened,
 		Menu,

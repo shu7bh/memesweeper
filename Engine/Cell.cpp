@@ -49,6 +49,7 @@ void Cell::draw(Graphics& gfx) const
 		default:
 			break;
 		}
+		break;
 	case TileState::Flagged:
 		SpriteCodex::DrawTileFlag(pos, gfx);
 		break;

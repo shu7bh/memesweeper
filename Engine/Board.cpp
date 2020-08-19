@@ -17,6 +17,7 @@ Board::Board(const Vec2 pos, const int nCW, const int nCH, const int numBombs)
 		cells[i] = std::make_unique<Cell>();
 
 	Vec2 cellPos;
+	//  For populating the bombs
 	for (auto i = 0; i < numBombs; ++i)
 	{
 		do
@@ -27,6 +28,7 @@ Board::Board(const Vec2 pos, const int nCW, const int nCH, const int numBombs)
 			std::make_unique<Cell>(calCellPos(cellPos), Tile::TileBomb);
 	}
 
+	// For populating the numbers
 	for (auto i = 0; i < numCellsWidth; ++i)
 		for (auto j = 0; j < numCellsHeight; ++j)
 			if (cells[i * size_t(numCellsWidth) + j]->IsEmpty())

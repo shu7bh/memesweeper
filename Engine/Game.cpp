@@ -25,7 +25,7 @@ Game::Game( MainWindow& wnd )
 	:
 	wnd( wnd ),
 	gfx( wnd ),
-	board(Vec2(200, 250), 10, 10, 10),
+	board(Vec2(200, 250), 10, 10, 15),
 	state(State::Opened)
 {
 }
