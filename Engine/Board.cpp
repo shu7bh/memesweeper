@@ -9,7 +9,7 @@ Board::Board(const Vec2 pos, const int nCW, const int nCH, const int numBombs)
 {
 	static std::random_device rd;
 	static std::mt19937_64 generator(rd());
-	static std::uniform_int_distribution<int> val(0, 8);
+	static std::uniform_int_distribution<int> val(0, 10);
 
 	for (int i = pos.x + padding, ct = 0; i < Graphics::ScreenWidth && ct < numCellsWidth; i += Cell::width + padding, ++ct)
 		for (int j = pos.y + padding, ct = 0; j < Graphics::ScreenHeight && ct < numCellsHeight; j += Cell::height + padding, ++ct)

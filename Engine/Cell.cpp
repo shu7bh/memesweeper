@@ -34,6 +34,12 @@ void Cell::draw(Graphics& gfx) const
 	case Tile::Tile8:
 		SpriteCodex::DrawTile8(pos, gfx);
 		break;
+	case Tile::TileFlag:
+		SpriteCodex::DrawTileFlag(pos, gfx);
+		break;
+	case Tile::TileBomb:
+		SpriteCodex::DrawTileBomb(pos, gfx);
+		break;
 	default:
 		break;
 	}
