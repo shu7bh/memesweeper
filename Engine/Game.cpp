@@ -43,8 +43,15 @@ void Game::UpdateModel()
 		break;
 	case State::Running:
 		if (wnd.mouse.LeftIsPressed())
-			if (!board.leftIsClicked(wnd))
-				state = State::End;
+			if (!inhibitLeftMouseClick)
+			{
+				inhibitLeftMouseClick = true;
+				if (!board.leftIsClicked(wnd))
+					state = State::End;
+			}
+			else;
+		else
+			inhibitLeftMouseClick = false;
 
 		if (wnd.mouse.RightIsPressed())
 			if (!inhibitRightMouseClick)
@@ -54,8 +61,19 @@ void Game::UpdateModel()
 			inhibitRightMouseClick = false;
 		break;
 	case State::End:
-		if (wnd.mouse.LeftIsPressed() || wnd.mouse.RightIsPressed())
-			State::Menu;
+		if (wnd.mouse.LeftIsPressed())
+			if (!inhibitLeftMouseClick)
+				state = State::Menu, inhibitLeftMouseClick = true;
+			else;
+		else
+			inhibitLeftMouseClick = false;
+
+		if (wnd.mouse.RightIsPressed())
+			if (!inhibitRightMouseClick)
+				state = State::Menu, inhibitRightMouseClick = true;
+			else;
+		else
+			inhibitRightMouseClick = false;
 		break;
 	default:
 		break;
@@ -70,9 +88,8 @@ void Game::ComposeFrame()
 	case State::Menu:
 		break;
 	case State::Running:
-		board.draw(gfx);
-		break;
 	case State::End:
+		board.draw(gfx);
 		break;
 	default:
 		break;

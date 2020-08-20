@@ -54,6 +54,7 @@ private:
 	/*  User Variables              */
 	/********************************/
 	Board board;
-	State state = State::Menu;
+	State state = State::Running;
 	bool inhibitRightMouseClick = false;
+	bool inhibitLeftMouseClick = false;
 };
