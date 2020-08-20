@@ -104,7 +104,7 @@ void Board::openAllBombs()
 			cell->ts = TileState::Opened;
 }
 
-void Board::leftIsClicked(MainWindow& wnd)
+bool Board::leftIsClicked(MainWindow& wnd)
 {
 	Vec2 mousePos = calMousePos(Vec2(wnd.mouse.GetPosX(), wnd.mouse.GetPosY()));
 
@@ -122,13 +122,14 @@ void Board::leftIsClicked(MainWindow& wnd)
 				break;
 			case Tile::TileBomb:
 				openAllBombs();
-				break;
+				return false;
 			}
 			break;
 		default:
 			break;
 		}
 	}
+	return true;
 }
 
 void Board::RightIsClicked(MainWindow& wnd)

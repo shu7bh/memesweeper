@@ -32,7 +32,6 @@ class Game
 public:
 	enum class State : char
 	{
-		Opened,
 		Menu,
 		Running,
 		End,
@@ -55,6 +54,6 @@ private:
 	/*  User Variables              */
 	/********************************/
 	Board board;
-	State state;
+	State state = State::Menu;
 	bool inhibitRightMouseClick = false;
 };

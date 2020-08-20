@@ -21,7 +21,7 @@ public:
 	std::vector<std::unique_ptr<Cell>> cells;
 	const Color color = Colors::LightGray;
 	void draw(Graphics& gfx) const;
-	void leftIsClicked(MainWindow& wnd);
+	bool leftIsClicked(MainWindow& wnd);
 	void RightIsClicked(MainWindow& wnd);
 private:
 	const bool cellPosIsValid(const Vec2& pos) const;

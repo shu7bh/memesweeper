@@ -25,10 +25,7 @@ Game::Game( MainWindow& wnd )
 	:
 	wnd( wnd ),
 	gfx( wnd ),
-	board(20, 20, 60),
-	state(State::Opened)
-{
-}
+	board(20, 20, 60) {}
 
 void Game::Go()
 {
@@ -40,18 +37,44 @@ void Game::Go()
 
 void Game::UpdateModel()
 {
-	if (wnd.mouse.LeftIsPressed())
-		board.leftIsClicked(wnd);
+	switch (state)
+	{
+	case State::Menu:
+		break;
+	case State::Running:
+		if (wnd.mouse.LeftIsPressed())
+			if (!board.leftIsClicked(wnd))
+				state = State::End;
 
-	if (wnd.mouse.RightIsPressed())
-		if (!inhibitRightMouseClick)
-			board.RightIsClicked(wnd), inhibitRightMouseClick = true;
-		else;
-	else
-		inhibitRightMouseClick = false;
+		if (wnd.mouse.RightIsPressed())
+			if (!inhibitRightMouseClick)
+				board.RightIsClicked(wnd), inhibitRightMouseClick = true;
+			else;
+		else
+			inhibitRightMouseClick = false;
+		break;
+	case State::End:
+		if (wnd.mouse.LeftIsPressed() || wnd.mouse.RightIsPressed())
+			State::Menu;
+		break;
+	default:
+		break;
+	}
+
 }
 
 void Game::ComposeFrame()
 {	
-	board.draw(gfx);
+	switch (state)
+	{
+	case State::Menu:
+		break;
+	case State::Running:
+		board.draw(gfx);
+		break;
+	case State::End:
+		break;
+	default:
+		break;
+	}
 }
