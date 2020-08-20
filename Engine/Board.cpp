@@ -94,7 +94,14 @@ void Board::openInVicinity(const Vec2& cellPos)
 		}
 }
 
-void Board::leftIsClicked (MainWindow& wnd)
+void Board::openAllBombs()
+{
+	for (auto& cell : cells)
+		if (cell->tile == Tile::TileBomb)
+			cell->ts = TileState::Opened;
+}
+
+void Board::leftIsClicked(MainWindow& wnd)
 {
 	Vec2 mousePos = calMousePos(Vec2(wnd.mouse.GetPosX(), wnd.mouse.GetPosY()));
 
@@ -105,9 +112,16 @@ void Board::leftIsClicked (MainWindow& wnd)
 		{
 		case TileState::Closed:
 			cell(mousePos)->ts = TileState::Opened;
-			if (cell(mousePos)->tile == Tile::Tile0)
+			switch (cell(mousePos)->tile)
+			{
+			case Tile::Tile0:
 				openInVicinity(mousePos);
 				break;
+			case Tile::TileBomb:
+				openAllBombs();
+				break;
+			}
+			break;
 		default:
 			break;
 		}
