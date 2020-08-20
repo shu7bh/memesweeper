@@ -31,8 +31,7 @@ Board::Board(const int nCW, const int nCH, const int numBombs)
 			cellPos = Vec2(valx(generator), valy(generator));
 		while (!cell(cellPos)->IsEmpty());
 
-		cells[cellPos.x * size_t(numCellsWidth) + cellPos.y] = 
-			std::make_unique<Cell>(calCellPos(cellPos), Tile::TileBomb);
+		cell(cellPos) = std::make_unique<Cell>(calCellPos(cellPos), Tile::TileBomb);
 	}
 
 	// For populating the numbers
@@ -111,10 +110,11 @@ void Board::RevealAll()
 bool Board::leftIsClicked(MainWindow& wnd)
 {
 	Vec2 mousePos = calMousePos(Vec2(wnd.mouse.GetPosX(), wnd.mouse.GetPosY()));
-	mousePos;
 	if (mousePos.x >= numCellsWidth || mousePos.x < 0 || mousePos.y >= numCellsHeight || mousePos.y < 0)
 		return true;
-	if ((int(mousePos.x) + Cell::width > mousePos.x) && (int(mousePos.y) + Cell::height > mousePos.y))
+	const Vec2 temp = mousePos * Vec2(Cell::width + padding, Cell::height + padding);
+	if ((int(mousePos.x) * (Cell::width + padding) + Cell::width > temp.x) && 
+		(int(mousePos.y) * (Cell::width + padding) + Cell::height > temp.y))
 	{
 		mousePos = Vec2(int(mousePos.x), int(mousePos.y));
 		switch (cell(mousePos)->ts)
@@ -144,7 +144,12 @@ void Board::RightIsClicked(MainWindow& wnd)
 {
 	const Vec2 mousePos = calMousePos(Vec2(wnd.mouse.GetPosX(), wnd.mouse.GetPosY()));
 
-	if ((int(mousePos.x) + Cell::width >= mousePos.x) && (int(mousePos.y) + Cell::height >= mousePos.y))
+	if (mousePos.x >= numCellsWidth || mousePos.x < 0 || mousePos.y >= numCellsHeight || mousePos.y < 0)
+		return;
+	const Vec2 temp = mousePos * Vec2(Cell::width + padding, Cell::height + padding);
+	if ((int(mousePos.x) * (Cell::width + padding) + Cell::width > temp.x) &&
+		(int(mousePos.y) * (Cell::width + padding) + Cell::height > temp.y))
+
 		switch (cell(mousePos)->ts)
 		{
 		case TileState::Flagged:
