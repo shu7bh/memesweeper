@@ -14,8 +14,7 @@ enum class Tile : char
 	Tile6,
 	Tile7,
 	Tile8,
-	TileFlag,
-	TileBomb
+	TileBomb,
 };
 
 enum class TileState : char

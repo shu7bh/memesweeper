@@ -51,12 +51,12 @@ const bool Board::cellIsBomb(const Vec2& pos) const
 	return cell(pos)->getTile() == Tile::TileBomb;
 }
 
-const int Board::bombInVicinityCounter(const Vec2& pos) const
+const int Board::bombInVicinityCounter(const Vec2& cellPos) const
 {
 	int ct = 0;
 	for (auto i = -1; i <= 1; ++i)
 		for (auto j = -1; j <=1; ++j)
-			if (cellPosIsValid(pos + Vec2(i, j)) && cellIsBomb(pos + Vec2(i, j)))
+			if (cellPosIsValid(cellPos + Vec2(i, j)) && cellIsBomb(cellPos + Vec2(i, j)))
 				++ct;
 	return ct;
 }
@@ -71,19 +71,47 @@ const Vec2 Board::calMousePos(const Vec2& mousePos) const
 	return (mousePos - pos - Vec2(padding, padding)) / (Vec2(padding, padding) + Vec2(Cell::width, Cell::height));
 }
 
+void Board::openInVicinity(const Vec2& cellPos)
+{
+	for (auto i = -1; i <= 1; ++i)
+		for (auto j = -1; j <= 1; ++j)
+		{
+			const Vec2(vicinityCellPos) = cellPos + Vec2(i, j);
+			if (cellPosIsValid(vicinityCellPos))
+			{
+				switch (cell(vicinityCellPos)->ts)
+				{
+				case TileState::NotClicked:
+					cell(vicinityCellPos)->ts = TileState::Clicked;
+					if (cell(vicinityCellPos)->tile == Tile::Tile0)
+						openInVicinity(vicinityCellPos);
+					break;
+
+				default:
+					break;
+				}
+			}
+		}
+}
+
 void Board::leftIsClicked (MainWindow& wnd)
 {
-	const Vec2 mousePos = calMousePos(Vec2(wnd.mouse.GetPosX(), wnd.mouse.GetPosY()));
+	Vec2 mousePos = calMousePos(Vec2(wnd.mouse.GetPosX(), wnd.mouse.GetPosY()));
 
 	if ((int(mousePos.x) + Cell::width > mousePos.x) && (int(mousePos.y) + Cell::height > mousePos.y))
+	{
+		mousePos = Vec2(int(mousePos.x), int(mousePos.y));
 		switch (cell(mousePos)->ts)
 		{
 		case TileState::NotClicked:
 			cell(mousePos)->ts = TileState::Clicked;
-			break;
+			if (cell(mousePos)->tile == Tile::Tile0)
+				openInVicinity(mousePos);
+				break;
 		default:
 			break;
 		}
+	}
 }
 
 void Board::RightIsClicked(MainWindow& wnd)

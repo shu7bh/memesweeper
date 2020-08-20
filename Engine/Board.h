@@ -29,4 +29,5 @@ private:
 	const int bombInVicinityCounter(const Vec2& pos) const;
 	const Vec2 calCellPos(const Vec2& cellPos) const;
 	const Vec2 calMousePos(const Vec2& mousePos) const;
+	void openInVicinity(const Vec2& cellPos);
 };
