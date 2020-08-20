@@ -1,10 +1,17 @@
 #include "Vec2.h"
 #include <cmath>
 
-Vec2::Vec2( int x_in,int y_in )
+Vec2::Vec2( float x_in,float y_in )
 	:
 	x( x_in ),
 	y( y_in )
+{
+}
+
+Vec2::Vec2(int x_in, int y_in)
+	:
+	x(x_in),
+	y(y_in)
 {
 }
 

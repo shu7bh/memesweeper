@@ -73,7 +73,7 @@ const Vec2 Board::calCellPos(const Vec2& cellPos) const
 
 const Vec2 Board::calMousePos(const Vec2& mousePos) const
 {
-	return (mousePos - pos - Vec2(padding, padding)) / (Vec2(padding, padding) + Vec2(Cell::width, Cell::height));
+	return (mousePos - pos - Vec2(float(padding), float(padding))) / (Vec2(float(padding), float(padding)) + Vec2(Cell::width, Cell::height));
 }
 
 void Board::openInVicinity(const Vec2& cellPos)
@@ -111,6 +111,7 @@ void Board::RevealAll()
 bool Board::leftIsClicked(MainWindow& wnd)
 {
 	Vec2 mousePos = calMousePos(Vec2(wnd.mouse.GetPosX(), wnd.mouse.GetPosY()));
+	mousePos;
 	if (mousePos.x >= numCellsWidth || mousePos.x < 0 || mousePos.y >= numCellsHeight || mousePos.y < 0)
 		return true;
 	if ((int(mousePos.x) + Cell::width > mousePos.x) && (int(mousePos.y) + Cell::height > mousePos.y))
