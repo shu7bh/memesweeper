@@ -24,6 +24,7 @@ public:
 	void draw(Graphics& gfx) const;
 	bool leftIsClicked(MainWindow& wnd);
 	void RightIsClicked(MainWindow& wnd);
+	bool allNumbersClicked() const;
 private:
 	const bool cellPosIsValid(const Vec2& pos) const;
 	const bool cellIsBomb(const Vec2& pos) const;

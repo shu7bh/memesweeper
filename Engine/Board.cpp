@@ -153,6 +153,26 @@ void Board::RightIsClicked(MainWindow& wnd)
 		}
 }
 
+bool Board::allNumbersClicked() const
+{
+	for (const auto& cell : cells)
+		switch (cell->tile)
+		{
+		case Tile::TileBomb:
+			break;
+		default:
+			switch (cell->ts)
+			{
+			case TileState::Opened:
+				break;
+			default:
+				return false;
+			}
+			break;
+		}
+	return true;
+}
+
 void Board::draw(Graphics& gfx) const
 {
 	gfx.DrawRect(pos.x, pos.y, pos.x + numCellsWidth * (Cell::width + padding) + padding,

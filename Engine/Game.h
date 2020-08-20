@@ -36,6 +36,7 @@ public:
 		Menu,
 		Running,
 		End,
+		Won,
 	};
 public:
 	Game( class MainWindow& wnd );

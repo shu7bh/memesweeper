@@ -84,9 +84,14 @@ void Game::UpdateModel()
 			else;
 		else
 			inhibitRightMouseClick = false;
+
+		if (board->allNumbersClicked())
+			state = State::Won;
+
 		break;
 
 	case State::End:
+	case State::Won:
 		if (wnd.mouse.LeftIsPressed())
 			if (!inhibitLeftMouseClick)
 				state = State::Menu, inhibitLeftMouseClick = true;
@@ -117,6 +122,9 @@ void Game::ComposeFrame()
 	case State::Running:
 	case State::End:
 		board->draw(gfx);
+		break;
+	case State::Won:
+		SpriteCodex::DrawWin(Vec2(gfx.ScreenWidth / 2, gfx.ScreenHeight / 2), gfx);
 		break;
 	default:
 		break;
