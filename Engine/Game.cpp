@@ -21,11 +21,10 @@
 #include "MainWindow.h"
 #include "Game.h"
 
-Game::Game( MainWindow& wnd )
+Game::Game(MainWindow& wnd)
 	:
-	wnd( wnd ),
-	gfx( wnd ),
-	board(20, 20, 60) {}
+	wnd(wnd),
+	gfx(wnd) {}
 
 void Game::Go()
 {
@@ -40,13 +39,39 @@ void Game::UpdateModel()
 	switch (state)
 	{
 	case State::Menu:
+		menu.hover(Vec2(wnd.mouse.GetPosX(), wnd.mouse.GetPosY()));
+		if (wnd.mouse.LeftIsPressed())
+			if (!inhibitLeftMouseClick)
+			{
+				inhibitLeftMouseClick = true;
+				switch (menu.highlighted)
+				{
+				case Menu::Highlighted::Small:
+					board = std::make_unique<Board>(9, 9, 10);
+					state = State::Running;
+					break;
+				case Menu::Highlighted::Medium:
+					board = std::make_unique<Board>(16, 16, 40);
+					state = State::Running;
+					break;
+				case Menu::Highlighted::Large:
+					board = std::make_unique<Board>(25, 25, 99);
+					state = State::Running;
+					break;
+				default:
+					break;
+				}
+			}
+			else;
+		else
+			inhibitLeftMouseClick = false;
 		break;
 	case State::Running:
 		if (wnd.mouse.LeftIsPressed())
 			if (!inhibitLeftMouseClick)
 			{
 				inhibitLeftMouseClick = true;
-				if (!board.leftIsClicked(wnd))
+				if (!board->leftIsClicked(wnd))
 					state = State::End;
 			}
 			else;
@@ -55,7 +80,7 @@ void Game::UpdateModel()
 
 		if (wnd.mouse.RightIsPressed())
 			if (!inhibitRightMouseClick)
-				board.RightIsClicked(wnd), inhibitRightMouseClick = true;
+				board->RightIsClicked(wnd), inhibitRightMouseClick = true;
 			else;
 		else
 			inhibitRightMouseClick = false;
@@ -91,7 +116,7 @@ void Game::ComposeFrame()
 		break;
 	case State::Running:
 	case State::End:
-		board.draw(gfx);
+		board->draw(gfx);
 		break;
 	default:
 		break;

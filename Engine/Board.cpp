@@ -11,8 +11,8 @@ Board::Board(const int nCW, const int nCH, const int numBombs)
 {
 	static std::random_device rd;
 	static std::mt19937_64 generator(rd());
-	static std::uniform_int_distribution<int> valx(0, numCellsWidth - 1);
-	static std::uniform_int_distribution<int> valy(0, numCellsHeight - 1);
+	std::uniform_int_distribution<int> valx(0, numCellsWidth - 1);
+	std::uniform_int_distribution<int> valy(0, numCellsHeight - 1);
 
 	pos.x = int((Graphics::ScreenWidth - padding - numCellsWidth * (Cell::width + padding)) / 2);
 	pos.y = int((Graphics::ScreenHeight - padding - numCellsHeight * (Cell::height + padding)) / 2);

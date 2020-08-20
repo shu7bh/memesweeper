@@ -14,7 +14,15 @@ const std::array<RectI, 3> Menu::rects =
 
 bool Menu::isContainedBy(const Vec2& mousePos, const int i) const
 {
-	return rects[i].IsContainedBy( RectI::FromCenter(mousePos,0,0));
+	return RectI::FromCenter(mousePos, 0, 0).IsContainedBy(rects[i]);
+}
+
+void Menu::hover(const Vec2& mousePos)
+{
+	highlighted = Highlighted::None;
+	for (auto i = 0; i < rects.size(); ++i)
+		if (isContainedBy(mousePos, i))
+			highlighted = static_cast<Highlighted>(i + 1);
 }
 
 void Menu::draw(Graphics& gfx) const
@@ -23,3 +31,4 @@ void Menu::draw(Graphics& gfx) const
 	SpriteCodex::DrawMedium(rects[1].GetCenter(), gfx);
 	SpriteCodex::DrawLarge(rects[2].GetCenter(), gfx);
 }
+

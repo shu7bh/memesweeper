@@ -54,8 +54,8 @@ private:
 	/********************************/
 	/*  User Variables              */
 	/********************************/
-	Board board;
-	State state = State::Running;
+	std::unique_ptr<Board> board;
+	State state = State::Menu;
 	Menu menu;
 	bool inhibitRightMouseClick = false;
 	bool inhibitLeftMouseClick = false;
