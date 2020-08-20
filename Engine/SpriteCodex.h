@@ -25,4 +25,10 @@ public:
 	static void DrawTileFlag( const Vec2& pos,Graphics& gfx );
 	static void DrawTileBomb( const Vec2& pos,Graphics& gfx );
 	static void DrawTileBombRed( const Vec2& pos,Graphics& gfx );
+
+	static constexpr int sizeselWidth = 240;
+	static constexpr int sizeselHeight = 56;
+	static void DrawSmall(const Vec2& pos, Graphics& gfx);
+	static void DrawMedium(const Vec2& pos, Graphics& gfx);
+	static void DrawLarge(const Vec2& pos, Graphics& gfx);
 };
