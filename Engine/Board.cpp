@@ -7,7 +7,9 @@ Board::Board(const int nCW, const int nCH, const int numBombs)
 	numCellsWidth(nCW), 
 	numCellsHeight(nCH), 
 	numBombs(numBombs),
-	cells(size_t(numCellsWidth) * numCellsHeight)
+	cells(size_t(numCellsWidth) * numCellsHeight),
+	losing(L"Losing_sound.wav"),
+	Win(L"Ta_Da.wav")
 {
 	static std::random_device rd;
 	static std::mt19937_64 generator(rd());
@@ -121,9 +123,9 @@ bool Board::leftIsClicked(MainWindow& wnd)
 			case Tile::Tile0:
 				openInVicinity(mousePos);
 				return true;
-				//break;
 			case Tile::TileBomb:
 				cell(mousePos)->ts = TileState::Clicked;
+				losing.Play();
 				openAllBombs();
 				return false;
 			}
@@ -170,6 +172,7 @@ bool Board::allNumbersClicked() const
 			}
 			break;
 		}
+	Win.Play();
 	return true;
 }
 

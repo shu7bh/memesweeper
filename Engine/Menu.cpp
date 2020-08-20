@@ -19,10 +19,16 @@ bool Menu::isContainedBy(const Vec2& mousePos, const int i) const
 
 void Menu::hover(const Vec2& mousePos)
 {
+	const auto temp = highlighted;
 	highlighted = Highlighted::None;
 	for (auto i = 0; i < rects.size(); ++i)
-		if (isContainedBy(mousePos, i))
+		if (isContainedBy(mousePos, i)) {
 			highlighted = static_cast<Highlighted>(i + 1);
+			//Beep.Play();
+		}
+
+	if (temp != highlighted && highlighted != Highlighted::None)
+		Beep.Play();
 }
 
 void Menu::draw(Graphics& gfx) const

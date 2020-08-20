@@ -8,6 +8,7 @@
 #include <vector>
 #include <memory>
 #include <random>
+#include "Sound.h"
 
 class Board
 {
@@ -33,4 +34,6 @@ private:
 	const Vec2 calMousePos(const Vec2& mousePos) const;
 	void openInVicinity(const Vec2& cellPos);
 	void openAllBombs();
+	Sound losing;
+	mutable Sound Win ;
 };

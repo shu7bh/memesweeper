@@ -3,6 +3,7 @@
 #include "SpriteCodex.h"
 #include "RectI.h"
 #include <array>
+#include "Sound.h"
 
 class Menu
 {
@@ -21,4 +22,5 @@ public:
 	void hover(const Vec2& mousePos);
 	void draw(Graphics& gfx) const;
 	Highlighted highlighted = Highlighted::None;
+	Sound Beep = Sound(L"menu_boop.wav");
 };
