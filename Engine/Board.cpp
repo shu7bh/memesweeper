@@ -148,13 +148,30 @@ void Board::RightIsClicked(MainWindow& wnd)
 			break;
 		}
 }
-#undef cell
 
 void Board::draw(Graphics& gfx) const
 {
 	gfx.DrawRect(pos.x, pos.y, pos.x + numCellsWidth * (Cell::width + padding) + padding,
 		pos.y + numCellsHeight * (Cell::height + padding) + padding, color);
 
+	for (int i = pos.x; i < pos.x + padding; ++i)
+		for (int j = pos.y; j < calCellPos(Vec2(0, numCellsHeight)).y; ++j)
+			gfx.PutPixel(i, j, Colors::Gray);
+
+	for (int i = calCellPos(Vec2(numCellsWidth, 0)).x - 1; i >= calCellPos(Vec2(numCellsWidth, 0)).x - 1 - padding; --i)
+		for (int j = pos.y; j < calCellPos(Vec2(0, numCellsHeight)).y; ++j)
+			gfx.PutPixel(i, j, Colors::Gray);
+
+	for (int i = pos.x; i < calCellPos(Vec2(numCellsWidth, 0)).x; ++i)
+		for (int j = pos.y; j < pos.y + padding; ++j)
+			gfx.PutPixel(i, j, Colors::Gray);
+
+	for (int i = pos.x; i < calCellPos(Vec2(numCellsWidth, 0)).x; ++i)
+		for (int j = calCellPos(Vec2(0, numCellsHeight)).y - 1; j >= calCellPos(Vec2(0, numCellsHeight)).y - 1 - padding; --j)
+			gfx.PutPixel(i, j, Colors::Gray);
+
 	for (const auto& cell : cells)
 		cell->draw(gfx);
 }
+
+#undef cell
