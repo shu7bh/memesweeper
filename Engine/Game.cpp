@@ -60,6 +60,7 @@ void Game::UpdateModel()
 		else
 			inhibitRightMouseClick = false;
 		break;
+
 	case State::End:
 		if (wnd.mouse.LeftIsPressed())
 			if (!inhibitLeftMouseClick)
@@ -86,6 +87,7 @@ void Game::ComposeFrame()
 	switch (state)
 	{
 	case State::Menu:
+		menu.draw(gfx);
 		break;
 	case State::Running:
 	case State::End:

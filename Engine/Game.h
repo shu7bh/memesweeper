@@ -26,6 +26,7 @@
 #include "Vec2.h"
 #include "Board.h"
 #include "SpriteCodex.h"
+#include "Menu.h"
 
 class Game
 {
@@ -55,6 +56,7 @@ private:
 	/********************************/
 	Board board;
 	State state = State::Running;
+	Menu menu;
 	bool inhibitRightMouseClick = false;
 	bool inhibitLeftMouseClick = false;
 };
