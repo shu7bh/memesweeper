@@ -41,7 +41,14 @@ void Game::Go()
 void Game::UpdateModel()
 {
 	if (wnd.mouse.LeftIsPressed())
-		board.isClicked(wnd);
+		board.leftIsClicked(wnd);
+
+	if (wnd.mouse.RightIsPressed())
+		if (!inhibitRightMouseClick)
+			board.RightIsClicked(wnd), inhibitRightMouseClick = true;
+		else;
+	else
+		inhibitRightMouseClick = false;
 }
 
 void Game::ComposeFrame()

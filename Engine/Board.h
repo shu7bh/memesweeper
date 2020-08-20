@@ -21,10 +21,12 @@ public:
 	std::vector<std::unique_ptr<Cell>> cells;
 	const Color color = Colors::LightGray;
 	void draw(Graphics& gfx) const;
-	void isClicked(MainWindow& wnd);
+	void leftIsClicked(MainWindow& wnd);
+	void RightIsClicked(MainWindow& wnd);
 private:
 	const bool cellPosIsValid(const Vec2& pos) const;
 	const bool cellIsBomb(const Vec2& pos) const;
 	const int bombInVicinityCounter(const Vec2& pos) const;
 	const Vec2 calCellPos(const Vec2& cellPos) const;
+	const Vec2 calMousePos(const Vec2& mousePos) const;
 };

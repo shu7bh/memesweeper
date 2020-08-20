@@ -56,4 +56,5 @@ private:
 	/********************************/
 	Board board;
 	State state;
+	bool inhibitRightMouseClick = false;
 };
