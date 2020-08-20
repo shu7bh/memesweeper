@@ -107,7 +107,8 @@ void Board::openAllBombs()
 bool Board::leftIsClicked(MainWindow& wnd)
 {
 	Vec2 mousePos = calMousePos(Vec2(wnd.mouse.GetPosX(), wnd.mouse.GetPosY()));
-
+	if (mousePos.x >= numCellsWidth || mousePos.x < 0 || mousePos.y >= numCellsHeight || mousePos.y < 0)
+		return true;
 	if ((int(mousePos.x) + Cell::width > mousePos.x) && (int(mousePos.y) + Cell::height > mousePos.y))
 	{
 		mousePos = Vec2(int(mousePos.x), int(mousePos.y));
