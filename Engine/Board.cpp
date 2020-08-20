@@ -99,11 +99,13 @@ void Board::openInVicinity(const Vec2& cellPos)
 		}
 }
 
-void Board::openAllBombs()
+void Board::RevealAll()
 {
 	for (auto& cell : cells)
 		if (cell->tile == Tile::TileBomb && cell->ts != TileState::Clicked)
 			cell->ts = TileState::Opened;
+		else if (cell->tile != Tile::TileBomb && cell->ts == TileState::Flagged)
+			cell->ts = TileState::Crossed;
 }
 
 bool Board::leftIsClicked(MainWindow& wnd)
@@ -126,7 +128,7 @@ bool Board::leftIsClicked(MainWindow& wnd)
 			case Tile::TileBomb:
 				cell(mousePos)->ts = TileState::Clicked;
 				losing.Play();
-				openAllBombs();
+				RevealAll();
 				return false;
 			}
 			break;
