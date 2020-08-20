@@ -53,5 +53,7 @@ void Cell::draw(Graphics& gfx) const
 	case TileState::Flagged:
 		SpriteCodex::DrawTileFlag(pos, gfx);
 		break;
+	case TileState::Clicked:
+		SpriteCodex::DrawTileBombRed(pos, gfx);
 	}
 }

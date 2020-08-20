@@ -100,7 +100,7 @@ void Board::openInVicinity(const Vec2& cellPos)
 void Board::openAllBombs()
 {
 	for (auto& cell : cells)
-		if (cell->tile == Tile::TileBomb)
+		if (cell->tile == Tile::TileBomb && cell->ts != TileState::Clicked)
 			cell->ts = TileState::Opened;
 }
 
@@ -114,13 +114,14 @@ bool Board::leftIsClicked(MainWindow& wnd)
 		switch (cell(mousePos)->ts)
 		{
 		case TileState::Closed:
-			cell(mousePos)->ts = TileState::Opened;
 			switch (cell(mousePos)->tile)
 			{
 			case Tile::Tile0:
+				cell(mousePos)->ts = TileState::Opened;
 				openInVicinity(mousePos);
 				break;
 			case Tile::TileBomb:
+				cell(mousePos)->ts = TileState::Clicked;
 				openAllBombs();
 				return false;
 			}

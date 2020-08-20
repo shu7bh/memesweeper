@@ -21,7 +21,8 @@ enum class TileState : char
 {
 	Closed,
 	Opened,
-	Flagged
+	Flagged,
+	Clicked // Only for bomb
 };
 
 class Cell
