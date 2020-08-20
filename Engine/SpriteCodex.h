@@ -31,4 +31,7 @@ public:
 	static void DrawSmall(const Vec2& pos, Graphics& gfx);
 	static void DrawMedium(const Vec2& pos, Graphics& gfx);
 	static void DrawLarge(const Vec2& pos, Graphics& gfx);
+
+	// Win Screen 254x192 center origin
+	static void DrawWin(const Vec2& pos, Graphics& gfx);
 };
