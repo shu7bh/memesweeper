@@ -19,8 +19,8 @@ enum class Tile : char
 
 enum class TileState : char
 {
-	NotClicked,
-	Clicked,
+	Closed,
+	Opened,
 	Flagged
 };
 
@@ -46,5 +46,5 @@ public:
 	static constexpr short unsigned int width = 16;
 
 	const Tile tile;
-	TileState ts = TileState::NotClicked;
+	TileState ts = TileState::Closed;
 };

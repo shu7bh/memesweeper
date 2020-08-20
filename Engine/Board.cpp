@@ -81,8 +81,8 @@ void Board::openInVicinity(const Vec2& cellPos)
 			{
 				switch (cell(vicinityCellPos)->ts)
 				{
-				case TileState::NotClicked:
-					cell(vicinityCellPos)->ts = TileState::Clicked;
+				case TileState::Closed:
+					cell(vicinityCellPos)->ts = TileState::Opened;
 					if (cell(vicinityCellPos)->tile == Tile::Tile0)
 						openInVicinity(vicinityCellPos);
 					break;
@@ -103,8 +103,8 @@ void Board::leftIsClicked (MainWindow& wnd)
 		mousePos = Vec2(int(mousePos.x), int(mousePos.y));
 		switch (cell(mousePos)->ts)
 		{
-		case TileState::NotClicked:
-			cell(mousePos)->ts = TileState::Clicked;
+		case TileState::Closed:
+			cell(mousePos)->ts = TileState::Opened;
 			if (cell(mousePos)->tile == Tile::Tile0)
 				openInVicinity(mousePos);
 				break;
@@ -122,9 +122,9 @@ void Board::RightIsClicked(MainWindow& wnd)
 		switch (cell(mousePos)->ts)
 		{
 		case TileState::Flagged:
-			cell(mousePos)->ts = TileState::NotClicked;
+			cell(mousePos)->ts = TileState::Closed;
 			break;
-		case TileState::NotClicked:
+		case TileState::Closed:
 			cell(mousePos)->ts = TileState::Flagged;
 			break;
 		default:

@@ -10,10 +10,10 @@ void Cell::draw(Graphics& gfx) const
 {
 	switch (ts)
 	{
-	case TileState::NotClicked:
+	case TileState::Closed:
 		SpriteCodex::DrawTileButton(pos, gfx);
 		break;
-	case TileState::Clicked:
+	case TileState::Opened:
 		switch (tile)
 		{
 		case Tile::Tile0:
