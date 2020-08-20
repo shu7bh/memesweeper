@@ -2,9 +2,8 @@
 
 #define cell(vec) cells[int(vec.x) * size_t(numCellsWidth) + int(vec.y)]
 
-Board::Board(const Vec2 pos, const int nCW, const int nCH, const int numBombs)
+Board::Board(const int nCW, const int nCH, const int numBombs)
 : 
-	pos(pos), 
 	numCellsWidth(nCW), 
 	numCellsHeight(nCH), 
 	numBombs(numBombs),
@@ -14,6 +13,10 @@ Board::Board(const Vec2 pos, const int nCW, const int nCH, const int numBombs)
 	static std::mt19937_64 generator(rd());
 	static std::uniform_int_distribution<int> valx(0, numCellsWidth - 1);
 	static std::uniform_int_distribution<int> valy(0, numCellsHeight - 1);
+
+	pos.x = int((Graphics::ScreenWidth - padding - numCellsWidth * (Cell::width + padding)) / 2);
+	pos.y = int((Graphics::ScreenHeight - padding - numCellsHeight * (Cell::height + padding)) / 2);
+	//pos = Vec2(Graphics::ScreenWidth, Graphics::ScreenHeight) / 2 -	Vec2(numCellsWidth, numCellsHeight) / 2;
 
 	for (size_t i = 0; i < cells.size(); ++i)
 		cells[i] = std::make_unique<Cell>();

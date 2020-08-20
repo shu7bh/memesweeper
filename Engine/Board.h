@@ -17,7 +17,7 @@ private:
 	const int numBombs;
 	static constexpr short int padding = 5;
 public:
-	Board(const Vec2 pos, const int nCW, const int nCH, const int numBombs);
+	Board(const int nCW, const int nCH, const int numBombs);
 	std::vector<std::unique_ptr<Cell>> cells;
 	const Color color = Colors::LightGray;
 	void draw(Graphics& gfx) const;
