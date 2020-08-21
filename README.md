@@ -1,6 +1,6 @@
 # memesweeper
 
-The master of this repository is a fork from PlanteChili's memesweeper game. The game made by the us is in the Developer branch. To play the game, first you have to select the mode: Small, Medium, or Large, with the difficulty increasing in the same order.
+The master of this repository is a fork from PlanteChili's memesweeper game. The game made by the us is in the Dev branch (which is the default branch). To play the game, first you have to select the mode: Small, Medium, or Large, with the difficulty increasing in the same order.
 
 The game is played with the help of a mouse. To select a cell, left-click on it. To flag a square, right-click on it. The game ends when you have uncovered all the tiles with numbers.
 
