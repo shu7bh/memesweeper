@@ -22,5 +22,5 @@ public:
 	void hover(const Vec2& mousePos);
 	void draw(Graphics& gfx) const;
 	Highlighted highlighted = Highlighted::None;
-	Sound Beep = Sound(L"menu_boop.wav");
+	Sound Beep = Sound(L"Resource\\menu_boop.wav");
 };

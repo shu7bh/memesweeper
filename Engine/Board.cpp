@@ -8,8 +8,8 @@ Board::Board(const int nCW, const int nCH, const int numBombs)
 	numCellsHeight(nCH), 
 	numBombs(numBombs),
 	cells(size_t(numCellsWidth) * numCellsHeight),
-	losing(L"Losing_sound.wav"),
-	Win(L"Ta_Da.wav")
+	losing(L"Resource\\Losing_sound.wav"),
+	Win(L"Resource\\Ta_Da.wav")
 {
 	static std::random_device rd;
 	static std::mt19937_64 generator(rd());
