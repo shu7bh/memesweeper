@@ -80,7 +80,7 @@ void Board::openInVicinity(const Vec2& cellPos)
 	for (auto i = -1; i <= 1; ++i)
 		for (auto j = -1; j <= 1; ++j)
 		{
-			const Vec2(vicinityCellPos) = cellPos + Vec2(i, j);
+			const Vec2 vicinityCellPos = cellPos + Vec2(i, j);
 			if (cellPosIsValid(vicinityCellPos))
 			{
 				switch (cell(vicinityCellPos)->ts)
