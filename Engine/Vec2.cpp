@@ -10,8 +10,8 @@ Vec2::Vec2( float x_in,float y_in )
 
 Vec2::Vec2(int x_in, int y_in)
 	:
-	x(x_in),
-	y(y_in)
+	x(float(x_in)),
+	y(float(y_in))
 {
 }
 
@@ -92,5 +92,5 @@ float Vec2::GetLength() const
 
 int Vec2::GetLengthSq() const
 {
-	return x * x + y * y;
+	return int(x) * int(x) + int(y) * int(y);
 }

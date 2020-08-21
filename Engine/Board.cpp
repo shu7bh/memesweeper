@@ -16,8 +16,8 @@ Board::Board(const int nCW, const int nCH, const int numBombs)
 	std::uniform_int_distribution<int> valx(0, numCellsWidth - 1);
 	std::uniform_int_distribution<int> valy(0, numCellsHeight - 1);
 
-	pos.x = int((Graphics::ScreenWidth - padding - numCellsWidth * (Cell::width + padding)) / 2);
-	pos.y = int((Graphics::ScreenHeight - padding - numCellsHeight * (Cell::height + padding)) / 2);
+	pos.x = float(int((Graphics::ScreenWidth - padding - numCellsWidth * (Cell::width + padding)) / 2));
+	pos.y = float(int((Graphics::ScreenHeight - padding - numCellsHeight * (Cell::height + padding)) / 2));
 	//pos = Vec2(Graphics::ScreenWidth, Graphics::ScreenHeight) / 2 -	Vec2(numCellsWidth, numCellsHeight) / 2;
 
 	for (size_t i = 0; i < cells.size(); ++i)
@@ -186,23 +186,23 @@ bool Board::allNumbersClicked() const
 
 void Board::draw(Graphics& gfx) const
 {
-	gfx.DrawRect(pos.x, pos.y, pos.x + numCellsWidth * (Cell::width + padding) + padding,
-		pos.y + numCellsHeight * (Cell::height + padding) + padding, color);
+	gfx.DrawRect(int(pos.x), int(pos.y), int(pos.x) + numCellsWidth * (Cell::width + padding) + padding,
+		int(pos.y) + numCellsHeight * (Cell::height + padding) + padding, color);
 
-	for (int i = pos.x; i < pos.x + padding; ++i)
-		for (int j = pos.y; j < calCellPos(Vec2(0, numCellsHeight)).y; ++j)
+	for (int i = int(pos.x); i < int(pos.x) + padding; ++i)
+		for (int j = int(pos.y); j < int(calCellPos(Vec2(0, numCellsHeight)).y); ++j)
 			gfx.PutPixel(i, j, Colors::Gray);
 
-	for (int i = calCellPos(Vec2(numCellsWidth, 0)).x - 1; i >= calCellPos(Vec2(numCellsWidth, 0)).x - 1 - padding; --i)
-		for (int j = pos.y; j < calCellPos(Vec2(0, numCellsHeight)).y; ++j)
+	for (int i = int(calCellPos(Vec2(numCellsWidth, 0)).x) - 1; i >= int(calCellPos(Vec2(numCellsWidth, 0)).x) - 1 - padding; --i)
+		for (int j = int(pos.y); j < int(calCellPos(Vec2(0, numCellsHeight)).y); ++j)
 			gfx.PutPixel(i, j, Colors::Gray);
 
-	for (int i = pos.x; i < calCellPos(Vec2(numCellsWidth, 0)).x; ++i)
-		for (int j = pos.y; j < pos.y + padding; ++j)
+	for (int i = int(pos.x); i < int(calCellPos(Vec2(numCellsWidth, 0)).x); ++i)
+		for (int j = int(pos.y); j < int(pos.y) + padding; ++j)
 			gfx.PutPixel(i, j, Colors::Gray);
 
-	for (int i = pos.x; i < calCellPos(Vec2(numCellsWidth, 0)).x; ++i)
-		for (int j = calCellPos(Vec2(0, numCellsHeight)).y - 1; j >= calCellPos(Vec2(0, numCellsHeight)).y - 1 - padding; --j)
+	for (int i = int(pos.x); i < int(calCellPos(Vec2(numCellsWidth, 0)).x); ++i)
+		for (int j = int(calCellPos(Vec2(0, numCellsHeight)).y) - 1; j >= int(calCellPos(Vec2(0, numCellsHeight)).y) - 1 - padding; --j)
 			gfx.PutPixel(i, j, Colors::Gray);
 
 	for (const auto& cell : cells)

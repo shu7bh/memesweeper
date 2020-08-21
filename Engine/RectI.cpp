@@ -11,7 +11,7 @@ RectI::RectI( int left_in,int right_in,int top_in,int bottom_in )
 
 RectI::RectI( const Vec2& topLeft,const Vec2 & bottomRight )
 	:
-	RectI( topLeft.x,bottomRight.x,topLeft.y,bottomRight.y )
+	RectI( int(topLeft.x), int(bottomRight.x), int(topLeft.y), int(bottomRight.y ))
 {
 }
 
